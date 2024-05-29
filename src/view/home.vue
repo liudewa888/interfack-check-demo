@@ -40,7 +40,7 @@
       </div>
 
       <div style="margin: 20px 0; display: flex">
-        <button id="nextPage" @click="next">下一页</button>
+        <button id="nextPage" @click="next(1)">下一页</button>
         <!-- <button id="toggleView">保存并分享</button> -->
       </div>
     </div>
@@ -78,7 +78,7 @@ const genBarCode = () => {
   JsBarcode("#barcode", phone);
 };
 
-const next = (page = 1) => {
+const next = (page) => {
   currentPage.value += page;
   if (currentPage.value <= totalPages.value) {
     genBarCode();
