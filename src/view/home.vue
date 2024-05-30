@@ -79,15 +79,17 @@ const genBarCode = () => {
 };
 
 const next = (page) => {
-  currentPage.value += page;
-  if (currentPage.value <= totalPages.value) {
+  const current = currentPage.value + page;
+  if (current < totalPages.value) {
+    currentPage.value = current;
     genBarCode();
   }
 };
 
 const pre = () => {
-  currentPage.value -= 1;
-  if (currentPage.value > -1) {
+  const current =   currentPage.value - 1;
+  if (current > -1) {
+    currentPage.value = current;
     genBarCode();
   }
 };
