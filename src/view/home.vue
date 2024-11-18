@@ -1,14 +1,9 @@
 <template>
   <div class="web-main">
     <div class="son">
-      <el-input
-        type="textarea"
-        class="dataInput"
-        placeholder="输入手机号，多个换行输入"
-        v-model="phone"
-        rows="7"
-        resize="none"
-      />
+      <div id="barcodeContainer">
+        <svg id="barcode"></svg>
+      </div>
 
       <div
         style="display: flex; justify-content: space-between; margin-top: 20px"
@@ -18,25 +13,35 @@
         <button @click="next(10)">下十页</button>
         <button @click="pre">上一页</button>
       </div>
-      <div id="barcodeContainer">
-        <svg id="barcode"></svg>
-      </div>
-      <div id="qrcodeContainer" style="display: none">
+      <!-- <div id="qrcodeContainer" style="display: none">
         <div id="qrcode"></div>
-      </div>
-
+      </div> -->
+      <el-input
+        type="textarea"
+        class="dataInput"
+        placeholder="输入手机号，多个换行输入"
+        v-model="phone"
+        rows="7"
+        resize="none"
+      />
       <div
         style="
           width: 100%;
           margin-top: 8px;
           display: flex;
           justify-content: space-between;
+          align-items: center;
         "
       >
         <span id="totalPages" style="margin-right: 4px"
           >总页数:{{ totalPages }}</span
         >
-        <span id="currentPage">当前页: {{ currentPage + 1 }}</span>
+        <span id="currentPage"
+          >当前页:
+          <span style="color: #cc0000; font-size: 24px; font-weight: 700">{{
+            currentPage + 1
+          }}</span></span
+        >
       </div>
 
       <div style="margin: 20px 0; display: flex">
@@ -87,7 +92,7 @@ const next = (page) => {
 };
 
 const pre = () => {
-  const current =   currentPage.value - 1;
+  const current = currentPage.value - 1;
   if (current > -1) {
     currentPage.value = current;
     genBarCode();
@@ -120,14 +125,14 @@ const pre = () => {
     width: 100%;
     height: 200px;
     font-size: 1.2rem;
-    margin-top: 40px;
+    margin: 12px 0;
   }
   .son {
     width: 80%;
   }
 
   #barcodeContainer {
-    height: 200px;
+    height: 160px;
     text-align: center;
     border: 1px solid #ccc;
     margin: 8px 0;
@@ -141,6 +146,7 @@ const pre = () => {
   }
   #nextPage {
     width: 100%;
+    height: 120px;
   }
   .prevPage {
   }
